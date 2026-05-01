@@ -29,4 +29,4 @@ A relational database was designed, an ASP.NET Core Web API was developed, docum
 
 ## 🖼️ Ekran Görüntüleri
 ## Screenshots
-![image](screenshot1.png)
+![image](ekran.png)
