@@ -1,12 +1,11 @@
-# 📚 Sınav Sistemi
+# Sınav Sistemi / Exam Management System
 
 ## 📌 Proje Açıklaması
-Bu proje, sınav yönetim sistemi olarak geliştirilmiştir.  
-ASP.NET Core Web API ile backend, ASP.NET Core MVC ile kullanıcı arayüzü oluşturulmuştur.
+İlişkisel bir veritabanı tasarlanmış, bu veritabanı üzerine ASP.NET Core Web API geliştirilmiş, Swagger ile dokümantasyon sağlanmış ve .NET Core MVC ile kullanıcı arayüzü oluşturulmuştur.
 
----
+A relational database was designed, an ASP.NET Core Web API was developed, documented with Swagger, and a user interface was built using .NET Core MVC.
 
-## 🚀 Kullanılan Teknolojiler
+## 🚀 Teknolojiler
 - ASP.NET Core Web API
 - ASP.NET Core MVC
 - Entity Framework Core
@@ -14,30 +13,19 @@ ASP.NET Core Web API ile backend, ASP.NET Core MVC ile kullanıcı arayüzü olu
 - Swagger
 - Bootstrap
 
----
-
-## 🧩 Özellikler
+## 📂 Özellikler
 - Öğrenci yönetimi
-- Hoca yönetimi
 - Ders yönetimi
-- Sınav planlama
-- Salon yönetimi
-- Öğrenci sınav notları
-- Dashboard istatistikleri
-- API üzerinden veri işlemleri
+- Sınav sistemi
+- Salon planlama
+- Not giriş sistemi
+- API üzerinden CRUD işlemleri
 
----
+## 🔧 Kurulum
+1. Database'i SQL Server'a import et
+2. API projesini çalıştır
+3. MVC projesini çalıştır
+4. Swagger: https://localhost:xxxx/swagger
 
-## 🔗 API Dokümantasyonu
-Swagger ile API test edilebilir.
-
----
-
-## 🗄️ Veritabanı
-Proje SQL Server üzerinde çalışmaktadır.  
-`SinavSistemi.sql` dosyası ile veritabanı oluşturulabilir.
-
----
-
-## 👨‍💻 Geliştirici
-Amjad Alawad
+## 🖼️ Ekran Görüntüleri
+(İstersen buraya görsel ekleyebilirsin)
