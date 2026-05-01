@@ -27,6 +27,5 @@ A relational database was designed, an ASP.NET Core Web API was developed, docum
 3. MVC projesini çalıştır
 4. Swagger: https://localhost:xxxx/swagger
 
-## 🖼️ Ekran Görüntüleri
-## Screenshots
+## 🖼️ Arayüz
 ![image](ekran.png)
