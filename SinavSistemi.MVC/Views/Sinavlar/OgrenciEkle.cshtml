@@ -1,0 +1,89 @@
+﻿@model List<OgrenciVM>
+
+@{
+    ViewData["Title"] = "Sınava Öğrenci Ekle";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <a href="/Sinavlar" class="btn btn-outline-secondary me-3">
+        <i class="bi bi-arrow-left"></i>
+    </a>
+
+    <h4 class="fw-bold mb-0">
+        <i class="bi bi-person-plus me-2"></i>
+        @ViewBag.SinavBilgi — Öğrenci Ekle
+    </h4>
+</div>
+
+@if (TempData["Hata"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Hata"]
+    </div>
+}
+
+@if (ViewBag.SinavId == null)
+{
+    <div class="alert alert-danger">
+        ❌ SinavId gelmedi! Controller hatası var.
+    </div>
+}
+
+<div class="card">
+    <div class="card-body p-0">
+
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Öğrenci No</th>
+                    <th>Ad Soyad</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var o in Model)
+                    {
+                        <tr>
+                            <td>
+                                <span class="badge bg-dark">@o.OgrenciNo</span>
+                            </td>
+
+                            <td>@o.Ad @o.Soyad</td>
+
+                            <td>
+                                <form asp-controller="Sinavlar"
+                                      asp-action="OgrenciEkleKaydet"
+                                      method="post">
+
+                                    <input type="hidden" name="sinavId" value="@ViewBag.SinavId" />
+
+                                    <button type="submit"
+                                            name="ogrenciId"
+                                            value="@o.OgrenciId"
+                                            class="btn btn-sm btn-primary">
+
+                                        <i class="bi bi-plus"></i> Ekle
+                                    </button>
+
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">
+                            Öğrenci bulunamadı
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+</div>

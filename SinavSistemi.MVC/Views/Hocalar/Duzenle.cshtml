@@ -1,0 +1,32 @@
+﻿@model HocaVM
+@{
+    ViewData["Title"] = "Hoca Düzenle";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <a href="/Hocalar" class="btn btn-outline-secondary me-3"><i class="bi bi-arrow-left"></i></a>
+    <h4 class="fw-bold mb-0">Hoca Düzenle</h4>
+</div>
+
+<div class="card" style="max-width:480px">
+    <div class="card-body">
+        @if (ViewBag.Hata != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Hata</div>
+        }
+        <form method="post">
+            <input type="hidden" name="HocaId" value="@Model.HocaId" />
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Ad</label>
+                <input name="Ad" value="@Model.Ad" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Soyad</label>
+                <input name="Soyad" value="@Model.Soyad" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-warning w-100">
+                <i class="bi bi-check-circle me-1"></i>Güncelle
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@model DersVM
+@{
+    ViewData["Title"] = "Ders Düzenle";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <a href="/Dersler" class="btn btn-outline-secondary me-3"><i class="bi bi-arrow-left"></i></a>
+    <h4 class="fw-bold mb-0">Ders Düzenle</h4>
+</div>
+
+<div class="card" style="max-width:480px">
+    <div class="card-body">
+        @if (ViewBag.Hata != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Hata</div>
+        }
+        <form method="post">
+            <input type="hidden" name="DersId" value="@Model.DersId" />
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Ders Adı</label>
+                <input name="DersAdi" value="@Model.DersAdi" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Hoca</label>
+                <select name="HocaId" class="form-select" required>
+                    <option value="">-- Hoca Seçin --</option>
+                    @foreach (var h in (List<HocaVM>)ViewBag.Hocalar)
+                    {
+                        if (h.HocaId == Model.HocaId)
+                        {
+                            <option value="@h.HocaId" selected>@h.Ad @h.Soyad</option>
+                        }
+                        else
+                        {
+                            <option value="@h.HocaId">@h.Ad @h.Soyad</option>
+                        }
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-warning w-100">
+                <i class="bi bi-check-circle me-1"></i>Güncelle
+            </button>
+        </form>
+    </div>
+</div>

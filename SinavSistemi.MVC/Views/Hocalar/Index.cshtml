@@ -1,0 +1,44 @@
+﻿@model List<HocaVM>
+@{
+    ViewData["Title"] = "Hocalar";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-0"><i class="bi bi-person-badge me-2"></i>Hocalar</h4>
+    <a href="/Hocalar/Ekle" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Yeni Hoca</a>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Ad Soyad</th>
+                    <th>Ders Sayısı</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var h in Model)
+                {
+                    <tr>
+                        <td class="text-muted">@h.HocaId</td>
+                        <td class="fw-semibold">@h.Ad @h.Soyad</td>
+                        <td><span class="badge bg-info text-dark">@h.DersSayisi ders</span></td>
+                        <td>
+                            <a href="/Hocalar/Duzenle/@h.HocaId" class="btn btn-sm btn-outline-warning">
+                                <i class="bi bi-pencil"></i> Düzenle
+                            </a>
+                            <form method="post" action="/Hocalar/Sil/@h.HocaId" style="display:inline">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i> Sil
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

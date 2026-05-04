@@ -1,0 +1,47 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h3 class="mb-4">📊 Dashboard</h3>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5>Hocalar</h5>
+                <h2>@Model.hocaSayisi</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5>Öğrenciler</h5>
+                <h2>@Model.ogrenciSayisi</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-body">
+                <h5>Dersler</h5>
+                <h2>@Model.dersSayisi</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-body">
+                <h5>Sınavlar</h5>
+                <h2>@Model.sinavSayisi</h2>
+            </div>
+        </div>
+    </div>
+
+</div>

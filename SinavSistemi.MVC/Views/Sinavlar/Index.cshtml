@@ -1,0 +1,65 @@
+﻿@model List<SinavVM>
+@{
+    ViewData["Title"] = "Sınavlar";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-0"><i class="bi bi-clipboard-check me-2"></i>Sınavlar</h4>
+    <a href="/Sinavlar/Ekle" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Yeni Sınav</a>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Ders</th>
+                    <th>Hoca</th>
+                    <th>Salon</th>
+                    <th>Tarih</th>
+                    <th>Saat</th>
+                    <th>Öğrenci</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold">@s.DersAdi</td>
+                        <td>@s.HocaAdi</td>
+                        <td>@s.SalonAdi</td>
+                        <td>@s.SinavTarihi</td>
+                        <td>@s.BaslangicSaati - @s.BitisSaati</td>
+                        <td><span class="badge bg-primary">@s.OgrenciSayisi</span></td>
+                        <td>
+                            <a href="/Sinavlar/Detay/@s.SinavId" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-eye"></i> Detay
+                            </a>
+                            <a href="/Sinavlar/OgrenciEkle/@s.SinavId" class="btn btn-sm btn-outline-secondary">
+                                <i class="bi bi-person-plus"></i> Öğrenci
+                            </a>
+                            <a href="/Sinavlar/NotGir/@s.SinavId" class="btn btn-sm btn-outline-success">
+                                <i class="bi bi-pencil-square"></i> Not
+                            </a>
+                            <a href="/Sinavlar/Duzenle/@s.SinavId" class="btn btn-sm btn-outline-warning">
+                                <i class="bi bi-pencil"></i> Düzenle
+                            </a>
+
+                            <form asp-action="Sil" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@s.SinavId" />
+
+                                <button type="submit"
+                                        class="btn btn-danger btn-sm"
+                                       >
+                                    Sil
+                                </button>
+                            </form>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

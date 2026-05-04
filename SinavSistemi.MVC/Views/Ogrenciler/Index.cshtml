@@ -1,0 +1,49 @@
+﻿@model List<OgrenciVM>
+@{
+    ViewData["Title"] = "Öğrenciler";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-0"><i class="bi bi-people me-2"></i>Öğrenciler</h4>
+    <a href="/Ogrenciler/Ekle" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Yeni Öğrenci</a>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Öğrenci No</th>
+                    <th>Ad Soyad</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var o in Model)
+                {
+                    <tr>
+                        <td><span class="badge bg-dark">@o.OgrenciNo</span></td>
+                        <td class="fw-semibold">@o.Ad @o.Soyad</td>
+                        <td>
+                            <a href="/Ogrenciler/Notlar/@o.OgrenciId" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-bar-chart"></i> Notlar
+                            </a>
+                            <a href="/Ogrenciler/Duzenle/@o.OgrenciId" class="btn btn-sm btn-outline-warning">
+                                <i class="bi bi-pencil"></i> Düzenle
+                            </a>
+                            <form method="post" action="/Ogrenciler/Sil/@o.OgrenciId" style="display:inline"
+                                  onsubmit="return confirm('@o.Ad @o.Soyad silinsin mi?')">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i> Sil
+                                </button>
+                                <a href="/Ogrenciler/Belge/@o.OgrenciId" class="btn btn-success btn-sm">
+                                    <i class="bi bi-download"></i> Belge Al
+                                </a>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

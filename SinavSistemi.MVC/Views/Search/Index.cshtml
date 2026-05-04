@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Arama Sonuçları";
+}
+
+<h4>🔎 Arama Sonuçları</h4>
+
+<p>
+    Tip: <b>@ViewBag.Type</b> <br />
+    Aranan: <b>@ViewBag.Query</b>
+</p>
+
+<hr />
+
+<div class="card">
+    <div class="card-body">
+        <pre>@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }))</pre>
+    </div>
+</div>      

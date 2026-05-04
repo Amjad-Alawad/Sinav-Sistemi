@@ -1,0 +1,51 @@
+﻿@model SinavSistemi.MVC.Models.DersFormVM
+
+@{
+    ViewData["Title"] = "Ders Ekle";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <a href="/Dersler" class="btn btn-outline-secondary me-3">
+        <i class="bi bi-arrow-left"></i>
+    </a>
+    <h4 class="fw-bold mb-0">Yeni Ders Ekle</h4>
+</div>
+
+<div class="card" style="max-width:480px">
+    <div class="card-body">
+
+        @if (ViewBag.Hata != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Hata</div>
+        }
+
+        <form method="post">
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Ders Adı</label>
+                <input asp-for="DersAdi" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Hoca</label>
+
+                <select asp-for="HocaId" class="form-select" required>
+                    <option value="">-- Hoca Seçin --</option>
+
+                    @foreach (var h in Model.Hocalar)
+                    {
+                        <option value="@h.HocaId">
+                            @h.Ad @h.Soyad
+                        </option>
+                    }
+                </select>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="bi bi-check-circle me-1"></i>Kaydet
+            </button>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿@model SinavFormVM
+@{
+    ViewData["Title"] = "Sınav Düzenle";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <a href="/Sinavlar" class="btn btn-outline-secondary me-3"><i class="bi bi-arrow-left"></i></a>
+    <h4 class="fw-bold mb-0">Sınav Düzenle</h4>
+</div>
+
+<div class="card" style="max-width:520px">
+    <div class="card-body">
+        @if (ViewBag.Hata != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Hata</div>
+        }
+        <form method="post">
+            <input type="hidden" name="SinavId" value="@Model.SinavId" />
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Ders</label>
+                <select name="DersId" class="form-select" required>
+                    @foreach (var d in Model.Dersler)
+                    {
+                        if (d.DersId == Model.DersId)
+                        {
+                            <option value="@d.DersId" selected>@d.DersAdi (@d.HocaAd)</option>
+                        }
+                        else
+                        {
+                            <option value="@d.DersId">@d.DersAdi (@d.HocaAd)</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Salon</label>
+                <select name="SalonId" class="form-select" required>
+                    @foreach (var s in Model.Salonlar)
+                    {
+                        if (s.SalonId == Model.SalonId)
+                        {
+                            <option value="@s.SalonId" selected>@s.SalonAdi (Kapasite: @s.Kapasite)</option>
+                        }
+                        else
+                        {
+                            <option value="@s.SalonId">@s.SalonAdi (Kapasite: @s.Kapasite)</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Sınav Tarihi</label>
+                <input name="SinavTarihi" type="date" value="@Model.SinavTarihi" class="form-control" required />
+            </div>
+            <div class="row">
+                <div class="col mb-3">
+                    <label class="form-label fw-semibold">Başlangıç</label>
+                    <input name="BaslangicSaati" type="time" value="@Model.BaslangicSaati" class="form-control" required />
+                </div>
+                <div class="col mb-3">
+                    <label class="form-label fw-semibold">Bitiş</label>
+                    <input name="BitisSaati" type="time" value="@Model.BitisSaati" class="form-control" required />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning w-100">
+                <i class="bi bi-check-circle me-1"></i>Güncelle
+            </button>
+        </form>
+    </div>
+</div>

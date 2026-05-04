@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<h4 class="mb-4 fw-bold"><i class="bi bi-grid me-2"></i>Genel Bakış</h4>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="stat-card" style="background:linear-gradient(135deg,#0d6efd,#6610f2)">
+            <div class="sayi">@ViewBag.HocaSayisi</div>
+            <div class="etiket"><i class="bi bi-person-badge me-1"></i>Hoca</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card" style="background:linear-gradient(135deg,#198754,#20c997)">
+            <div class="sayi">@ViewBag.OgrenciSayisi</div>
+            <div class="etiket"><i class="bi bi-people me-1"></i>Öğrenci</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card" style="background:linear-gradient(135deg,#fd7e14,#ffc107)">
+            <div class="sayi">@ViewBag.DersSayisi</div>
+            <div class="etiket"><i class="bi bi-book me-1"></i>Ders</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card" style="background:linear-gradient(135deg,#dc3545,#e83e8c)">
+            <div class="sayi">@ViewBag.SinavSayisi</div>
+            <div class="etiket"><i class="bi bi-clipboard-check me-1"></i>Sınav</div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header bg-white py-3 fw-semibold">
+        <i class="bi bi-clock-history me-2 text-primary"></i>Son Eklenen Sınavlar
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Ders</th>
+                    <th>Hoca</th>
+                    <th>Salon</th>
+                    <th>Tarih</th>
+                    <th>Saat</th>
+                    <th>Öğrenci</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in (List<SinavVM>)ViewBag.SonSinavlar)
+                {
+                    <tr>
+                        <td>@s.DersAdi</td>
+                        <td>@s.HocaAdi</td>
+                        <td>@s.SalonAdi</td>
+                        <td>@s.SinavTarihi</td>
+                        <td>@s.BaslangicSaati - @s.BitisSaati</td>
+                        <td><span class="badge bg-primary">@s.OgrenciSayisi</span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

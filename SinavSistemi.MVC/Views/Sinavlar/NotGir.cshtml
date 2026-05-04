@@ -1,0 +1,54 @@
+﻿@model List<OgrenciSinaviVM>
+@{
+    ViewData["Title"] = "Not Girişi";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <a href="/Sinavlar" class="btn btn-outline-secondary me-3"><i class="bi bi-arrow-left"></i></a>
+    <h4 class="fw-bold mb-0"><i class="bi bi-pencil-square me-2"></i>Not Girişi</h4>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Öğrenci No</th>
+                    <th>Ad Soyad</th>
+                    <th>Mevcut Not</th>
+                    <th>Yeni Not Gir</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var o in Model)
+                {
+                    <tr>
+                        <td><span class="badge bg-dark">@o.OgrenciNo</span></td>
+                        <td>@o.OgrenciAdi</td>
+                        <td>
+                            @if (o.Notu.HasValue)
+                            {
+                                <span class="badge @(o.Notu >= 50 ? "bg-success" : "bg-danger")">@o.Notu</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Girilmedi</span>
+                            }
+                        </td>
+                        <td>
+                            <form method="post" action="/Sinavlar/NotKaydet" class="d-flex gap-2">
+                                <input type="hidden" name="ogrenciId" value="@o.OgrenciId" />
+                                <input type="hidden" name="sinavId" value="@ViewBag.SinavId" />
+                                <input name="notu" type="number" min="0" max="100" step="0.01"
+                                       value="@o.Notu" class="form-control form-control-sm" style="width:90px" />
+                                <button type="submit" class="btn btn-sm btn-success">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

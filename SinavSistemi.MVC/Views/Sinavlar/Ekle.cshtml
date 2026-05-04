@@ -1,0 +1,61 @@
+﻿@model SinavFormVM
+@{
+    ViewData["Title"] = "Sınav Ekle";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <a href="/Sinavlar" class="btn btn-outline-secondary me-3"><i class="bi bi-arrow-left"></i></a>
+    <h4 class="fw-bold mb-0">Yeni Sınav Ekle</h4>
+</div>
+
+<div class="card" style="max-width:520px">
+    <div class="card-body">
+        @if (ViewBag.Hata != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Hata</div>
+        }
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Ders</label>
+                <select name="DersId" class="form-select" required>
+                    <option value="">-- Ders Seçin --</option>
+                    @foreach (var d in Model.Dersler)
+                    {
+                        <option value="@d.DersId">@d.DersAdi (@d.HocaAd)</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Salon</label>
+                <select name="SalonId" class="form-select" required>
+                    <option value="">-- Salon Seçin --</option>
+                    @foreach (var s in Model.Salonlar)
+                    {
+                        <option value="@s.SalonId">@s.SalonAdi (Kapasite: @s.Kapasite)</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Sınav Tarihi</label>
+                <input name="SinavTarihi" type="date" class="form-control" required />
+            </div>
+            <div class="row">
+                <div class="col mb-3">
+                    <label class="form-label fw-semibold">Başlangıç</label>
+                    <input name="BaslangicSaati" type="time" class="form-control" required />
+                </div>
+                <div class="col mb-3">
+                    <label class="form-label fw-semibold">Bitiş</label>
+                    <input name="BitisSaati" type="time" class="form-control" required />
+                </div>
+            </div>
+            <div class="alert alert-info py-2 small">
+                <i class="bi bi-info-circle me-1"></i>
+                Aynı salon aynı saatte dolu ise sistem otomatik uyarı verir.
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="bi bi-check-circle me-1"></i>Kaydet
+            </button>
+        </form>
+    </div>
+</div>
